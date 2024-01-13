@@ -71,6 +71,7 @@ function App() {
       location={expenses[4].location}
       date={expenses[4].date}
       />
+      
     </div>
   );
 }
