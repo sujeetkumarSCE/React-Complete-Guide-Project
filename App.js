@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import ExpenseItem from "./components/ExpenseItem";
+
 const App = () => {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: "e1",
       title: "Toilet Paper",
@@ -31,37 +32,27 @@ const App = () => {
       location: "WestIndies",
       date: new Date(2022, 12, 28),
     },
-  ];
+  ]);
+
+  const addExpenseHandler = (expense) => {
+    // Update expenses state with the new expense
+    setExpenses((prevExpenses) => [expense, ...prevExpenses]);
+  };
 
   return (
     <div>
-      <NewExpense/>
-      <ExpenseItem
-        title={expenses[0].title}
-        amount={expenses[0].amount}
-        location={expenses[0].location}
-        date={expenses[0].date}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        amount={expenses[1].amount}
-        location={expenses[1].location}
-        date={expenses[1].date}
-      />
-      <ExpenseItem
-        title={expenses[2].title}
-        amount={expenses[2].amount}
-        location={expenses[2].location}
-        date={expenses[2].date}
-      />
-      <ExpenseItem
-        title={expenses[3].title}
-        amount={expenses[3].amount}
-        location={expenses[3].location}
-        date={expenses[3].date}
-      />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      {expenses.map((expense) => (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          location={expense.location}
+          date={expense.date}
+        />
+      ))}
     </div>
   );
 };
 
-export default App;
+export default App; 
