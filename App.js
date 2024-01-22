@@ -40,7 +40,9 @@ const App = () => {
   };
 
   return (
+    
     <div>
+      
       <NewExpense onAddExpense={addExpenseHandler} />
       {expenses.map((expense) => (
         <ExpenseItem
@@ -51,7 +53,9 @@ const App = () => {
           date={expense.date}
         />
       ))}
+        
     </div>
+    
   );
 };
 
